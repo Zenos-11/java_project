@@ -31,8 +31,30 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>正文 <span style="color:#e74c3c;">*</span></label>
-                <textarea id="content" rows="16" placeholder="请输入文章正文"></textarea>
+                <label>正文 <span style="color:#e74c3c;">*</span> <span style="font-weight:normal;color:#999;font-size:12px;">（支持 Markdown 语法）</span></label>
+                <!-- Markdown 工具栏 -->
+                <div class="md-toolbar">
+                    <button type="button" title="粗体" data-md="bold"><strong>B</strong></button>
+                    <button type="button" title="斜体" data-md="italic"><em>I</em></button>
+                    <button type="button" title="标题" data-md="heading">H</button>
+                    <button type="button" title="无序列表" data-md="ul">≡</button>
+                    <button type="button" title="有序列表" data-md="ol">1.</button>
+                    <button type="button" title="链接" data-md="link">🔗</button>
+                    <button type="button" title="图片" data-md="image">🖼</button>
+                    <button type="button" title="代码块" data-md="code">&lt;/&gt;</button>
+                    <button type="button" title="引用" data-md="quote">❝</button>
+                    <button type="button" title="分隔线" data-md="hr">—</button>
+                    <span class="md-toolbar-right">
+                        <a href="https://markdown.com.cn/basic-syntax/" target="_blank" style="font-size:12px;color:#3498db;">语法帮助</a>
+                    </span>
+                </div>
+                <!-- 编辑/预览 标签 -->
+                <div class="md-tabs">
+                    <span class="md-tab active" data-tab="edit">编辑</span>
+                    <span class="md-tab" data-tab="preview">预览</span>
+                </div>
+                <textarea id="content" rows="14" placeholder="支持 Markdown 语法编写文章...&#10;&#10;# 一级标题&#10;## 二级标题&#10;**粗体** *斜体*&#10;- 列表项&#10;1. 有序列表&#10;> 引用&#10;`代码`&#10;```&#10;代码块&#10;```"></textarea>
+                <div id="contentPreview" class="md-preview" style="display:none;"></div>
                 <span class="error-msg" id="contentError"></span>
             </div>
             <div style="display:flex; gap:10px;">
@@ -44,6 +66,7 @@
     </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/article-edit.js"></script>
 </body>

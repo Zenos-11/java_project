@@ -66,11 +66,11 @@ CREATE TABLE IF NOT EXISTS comment (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 初始数据：管理员账户（密码: admin123）
-INSERT INTO user (username, password, nickname, role) VALUES
-('admin', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6n5ti', '管理员', 'admin');
+INSERT IGNORE INTO user (username, password, nickname, role) VALUES
+('admin', '$2a$10$FKwlslCtOZxdzFFfoBZI8.JVN7aLtaUke8IOWUMBAd5qOcILAgGbu', '管理员', 'admin');
 
 -- 初始分类
-INSERT INTO category (name, description, sort_order) VALUES
+INSERT IGNORE INTO category (name, description, sort_order) VALUES
 ('技术', '技术相关文章', 1),
 ('生活', '生活随笔', 2),
 ('学习', '学习笔记', 3);

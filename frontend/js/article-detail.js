@@ -37,7 +37,9 @@ function loadArticle() {
                 $.each(tags, function(i, tag) { html += '<span>' + escapeHtml(tag) + '</span>'; });
                 html += '</div>';
             }
-            html += '<div class="content">' + escapeHtml(article.content).replace(/\n/g, '<br>') + '</div>';
+            // 使用 marked 渲染 Markdown
+            var contentHtml = window.marked ? marked.parse(article.content || '') : escapeHtml(article.content).replace(/\n/g, '<br>');
+            html += '<div class="content markdown-body">' + contentHtml + '</div>';
             $('#articleDetail').html(html);
         }
     });

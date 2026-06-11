@@ -26,6 +26,7 @@ com\blog\service\impl\ArticleServiceImpl.class
 com\blog\service\impl\UserServiceImpl.class
 com\blog\mapper\ArticleMapper.class
 com\blog\config\WebConfig.class
+com\blog\GenHash.class
 com\blog\controller\UserController.class
 com\blog\dto\ArticleDto.class
 com\blog\dto\RegisterDto.class

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(java -version)"
+      "Bash(java -version)",
+      "Bash(mvn exec:java -Dexec.mainClass=\"GenHash\" -Dexec.classpathScope=compile)"
     ]
   }
 }
