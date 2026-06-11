@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客首页</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="navbar" id="navbar"></div>
+
+    <div class="container wide">
+        <div class="card">
+            <div class="search-bar">
+                <input type="text" id="keyword" placeholder="搜索文章标题或摘要..." />
+                <select id="categoryFilter"><option value="">全部分类</option></select>
+                <button class="btn btn-primary" id="searchBtn">搜索</button>
+                <button class="btn btn-default" id="resetBtn">重置</button>
+            </div>
+        </div>
+
+        <div class="card" id="articleList"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

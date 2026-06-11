@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类管理</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="navbar" id="navbar"></div>
+
+    <div class="container">
+        <div class="card">
+            <h3 style="margin-bottom:14px;">新增分类</h3>
+            <div style="display:flex; gap:10px; align-items:flex-end;">
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+                    <label>分类名称</label>
+                    <input type="text" id="catName" placeholder="请输入分类名称" maxlength="50" />
+                </div>
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+                    <label>描述</label>
+                    <input type="text" id="catDesc" placeholder="分类描述（可选）" maxlength="255" />
+                </div>
+                <div class="form-group" style="width:80px; margin-bottom:0;">
+                    <label>排序</label>
+                    <input type="number" id="catSort" value="0" style="width:80px;" />
+                </div>
+                <button class="btn btn-primary" id="addBtn" style="height:38px;">添加</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom:14px;">分类列表</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr><th>ID</th><th>名称</th><th>描述</th><th>排序</th><th>创建时间</th><th>操作</th></tr>
+                </thead>
+                <tbody id="categoryTable"></tbody>
+            </table>
+        </div>
+
+        <!-- 编辑框 -->
+        <div class="card" id="editCard" style="display:none;">
+            <h3>编辑分类</h3>
+            <input type="hidden" id="editId" />
+            <div style="display:flex; gap:10px; margin-top:12px;">
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+                    <label>名称</label>
+                    <input type="text" id="editName" maxlength="50" />
+                </div>
+                <div class="form-group" style="flex:1; margin-bottom:0;">
+                    <label>描述</label>
+                    <input type="text" id="editDesc" maxlength="255" />
+                </div>
+                <div class="form-group" style="width:80px; margin-bottom:0;">
+                    <label>排序</label>
+                    <input type="number" id="editSort" style="width:80px;" />
+                </div>
+                <button class="btn btn-success" id="saveBtn" style="height:38px;">保存</button>
+                <button class="btn btn-default" id="cancelBtn" style="height:38px;">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

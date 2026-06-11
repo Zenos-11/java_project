@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-box">
+        <h2>用户注册</h2>
+        <div class="form-group">
+            <label>用户名 <span style="color:#e74c3c;">*</span></label>
+            <input type="text" id="username" placeholder="请输入用户名" />
+            <span class="error-msg" id="usernameError"></span>
+        </div>
+        <div class="form-group">
+            <label>昵称</label>
+            <input type="text" id="nickname" placeholder="请输入昵称（可选）" />
+        </div>
+        <div class="form-group">
+            <label>邮箱</label>
+            <input type="email" id="email" placeholder="请输入邮箱（可选）" />
+            <span class="error-msg" id="emailError"></span>
+        </div>
+        <div class="form-group">
+            <label>密码 <span style="color:#e74c3c;">*</span></label>
+            <input type="password" id="password" placeholder="密码不少于6位" />
+            <span class="error-msg" id="passwordError"></span>
+        </div>
+        <div class="form-group">
+            <label>确认密码 <span style="color:#e74c3c;">*</span></label>
+            <input type="password" id="confirmPassword" placeholder="请再次输入密码" />
+            <span class="error-msg" id="confirmError"></span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" id="registerBtn">注册</button>
+        <div class="switch-link">
+            已有账号？<a href="login.html">去登录</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

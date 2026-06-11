@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.ArticleMapper">
+
+    <resultMap id="articleMap" type="com.blog.entity.Article">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="summary" column="summary"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="authorId" column="author_id"/>
+        <result property="status" column="status"/>
+        <result property="viewCount" column="view_count"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="authorName" column="author_name"/>
+    </resultMap>
+
+    <select id="findPage" resultMap="articleMap">
+        SELECT a.*, c.name AS category_name, u.nickname AS author_name
+        FROM article a
+        LEFT JOIN category c ON a.category_id = c.id
+        LEFT JOIN user u ON a.author_id = u.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (a.title LIKE CONCAT('%', #{keyword}, '%') OR a.summary LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="categoryId != null">
+                AND a.category_id = #{categoryId}
+            </if>
+            <if test="status != null and status != ''">
+                AND a.status = #{status}
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM article a
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (a.title LIKE CONCAT('%', #{keyword}, '%') OR a.summary LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="categoryId != null">
+                AND a.category_id = #{categoryId}
+            </if>
+            <if test="status != null and status != ''">
+                AND a.status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultMap="articleMap">
+        SELECT a.*, c.name AS category_name, u.nickname AS author_name
+        FROM article a
+        LEFT JOIN category c ON a.category_id = c.id
+        LEFT JOIN user u ON a.author_id = u.id
+        WHERE a.id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO article (title, content, summary, category_id, author_id, status)
+        VALUES (#{title}, #{content}, #{summary}, #{categoryId}, #{authorId}, #{status})
+    </insert>
+
+    <update id="update" parameterType="com.blog.entity.Article">
+        UPDATE article
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="summary != null">summary = #{summary},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM article WHERE id = #{id}
+    </delete>
+
+    <update id="incrementViewCount">
+        UPDATE article SET view_count = view_count + 1 WHERE id = #{id}
+    </update>
+
+    <insert id="insertTag">
+        INSERT INTO article_tag (article_id, tag_id) VALUES (#{articleId}, #{tagId})
+    </insert>
+
+    <delete id="deleteTagsByArticleId">
+        DELETE FROM article_tag WHERE article_id = #{articleId}
+    </delete>
+
+    <select id="findTagsByArticleId" resultType="string">
+        SELECT t.name FROM tag t
+        INNER JOIN article_tag at ON t.id = at.tag_id
+        WHERE at.article_id = #{articleId}
+    </select>
+</mapper>

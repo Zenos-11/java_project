@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">发布文章</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="navbar" id="navbar"></div>
+
+    <div class="container">
+        <div class="card">
+            <div class="form-group">
+                <label>标题 <span style="color:#e74c3c;">*</span></label>
+                <input type="text" id="title" placeholder="请输入文章标题" maxlength="200" />
+                <span class="error-msg" id="titleError"></span>
+            </div>
+            <div class="form-group">
+                <label>分类</label>
+                <select id="categorySelect"><option value="">请选择分类</option></select>
+            </div>
+            <div class="form-group">
+                <label>摘要</label>
+                <textarea id="summary" rows="2" placeholder="文章摘要（可选，不填将自动截取正文前200字）" maxlength="500"></textarea>
+            </div>
+            <div class="form-group">
+                <label>标签</label>
+                <div class="tag-editor" id="tagEditor">
+                    <input type="text" id="tagInput" placeholder="输入标签后按回车" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>正文 <span style="color:#e74c3c;">*</span></label>
+                <textarea id="content" rows="16" placeholder="请输入文章正文"></textarea>
+                <span class="error-msg" id="contentError"></span>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <button class="btn btn-primary" id="publishBtn">发布</button>
+                <button class="btn btn-default" id="draftBtn">保存草稿</button>
+                <a href="index.html" class="btn btn-default">返回</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/article-edit.js"></script>
+</body>
+</html>
