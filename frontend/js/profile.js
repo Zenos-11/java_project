@@ -14,31 +14,52 @@ $(function() {
         }
     });
 
-    // 加载我的文章（包括草稿）
-    var params = { page: 1, pageSize: 50, status: '' };
+    // 加载我的文章（不传 status，后端返回全部：已发布 + 草稿）
+    var params = { page: 1, pageSize: 50 };
     request('GET', '/articles?' + $.param(params)).then(function(res) {
         if (res.code === 200) {
             var myId = currentUser().userId;
-            var html = '';
-            var hasArticle = false;
+            var publishedHtml = '';
+            var draftHtml = '';
+            var pubCount = 0;
+            var draftCount = 0;
             $.each(res.data.list, function(i, a) {
                 if (a.authorId === myId) {
-                    hasArticle = true;
                     var statusBadge = a.status === 'published'
                         ? '<span style="color:#27ae60;">[已发布]</span>'
                         : '<span style="color:#e67e22;">[草稿]</span>';
-                    html += '<div style="padding:10px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">';
-                    html += '<div><strong>' + escapeHtml(a.title) + '</strong> ' + statusBadge;
-                    html += '<div style="font-size:12px; color:#999;">' + formatTime(a.createTime) + '</div></div>';
-                    html += '<div>';
-                    html += '<a href="article-detail.html?id=' + a.id + '" class="btn btn-sm btn-default">查看</a> ';
-                    html += '<a href="article-edit.html?id=' + a.id + '" class="btn btn-sm btn-primary">编辑</a> ';
-                    html += '<button class="btn btn-sm btn-danger" onclick="delArticle(' + a.id + ')">删除</button>';
-                    html += '</div></div>';
+                    var itemHtml = '<div style="padding:10px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">';
+                    itemHtml += '<div><strong>' + escapeHtml(a.title) + '</strong> ' + statusBadge;
+                    itemHtml += '<div style="font-size:12px; color:#999;">' + formatTime(a.createTime) + '</div></div>';
+                    itemHtml += '<div>';
+                    itemHtml += '<a href="article-detail.html?id=' + a.id + '" class="btn btn-sm btn-default">查看</a> ';
+                    itemHtml += '<a href="article-edit.html?id=' + a.id + '" class="btn btn-sm btn-primary">编辑</a> ';
+                    itemHtml += '<button class="btn btn-sm btn-danger" onclick="delArticle(' + a.id + ')">删除</button>';
+                    itemHtml += '</div></div>';
+                    if (a.status === 'published') {
+                        publishedHtml += itemHtml;
+                        pubCount++;
+                    } else {
+                        draftHtml += itemHtml;
+                        draftCount++;
+                    }
                 }
             });
-            if (!hasArticle) html = '<div style="text-align:center; padding:20px; color:#999;">暂无文章</div>';
-            $('#myArticles').html(html);
+            var allHtml = '';
+            // 草稿区
+            allHtml += '<div style="margin-bottom:20px;">';
+            allHtml += '<h4 style="color:#e67e22; margin-bottom:8px;">📝 草稿 (' + draftCount + ')</h4>';
+            allHtml += (draftHtml || '<div style="text-align:center; padding:12px; color:#999;">暂无草稿</div>');
+            allHtml += '</div>';
+            // 已发布区
+            allHtml += '<div>';
+            allHtml += '<h4 style="color:#27ae60; margin-bottom:8px;">✅ 已发布 (' + pubCount + ')</h4>';
+            allHtml += (publishedHtml || '<div style="text-align:center; padding:12px; color:#999;">暂无已发布文章</div>');
+            allHtml += '</div>';
+            if (pubCount === 0 && draftCount === 0) {
+                allHtml = '<div style="text-align:center; padding:20px; color:#999;">暂无文章，<a href="article-edit.html">去写一篇</a></div>';
+            }
+            $('#myArticles').html(allHtml);
         }
     });
 });

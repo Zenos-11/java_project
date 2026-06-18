@@ -23,9 +23,7 @@ public class ArticleController {
 
     @GetMapping
     public Result<PageResult<Article>> list(ArticleQueryDto query) {
-        if (query.getStatus() == null || query.getStatus().isEmpty()) {
-            query.setStatus("published");
-        }
+        // 由前端决定是否过滤 status，后端不做默认值假设
         return Result.success(articleService.findPage(query));
     }
 
