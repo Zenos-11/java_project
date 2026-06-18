@@ -26,7 +26,6 @@ com\blog\service\impl\ArticleServiceImpl.class
 com\blog\service\impl\UserServiceImpl.class
 com\blog\mapper\ArticleMapper.class
 com\blog\config\WebConfig.class
-com\blog\GenHash.class
 com\blog\controller\UserController.class
 com\blog\dto\ArticleDto.class
 com\blog\dto\RegisterDto.class
@@ -34,5 +33,6 @@ com\blog\entity\Comment.class
 com\blog\controller\CategoryController.class
 com\blog\service\UserService.class
 com\blog\service\CategoryService.class
+com\blog\util\BCryptGen.class
 com\blog\entity\Article.class
 com\blog\entity\Tag.class

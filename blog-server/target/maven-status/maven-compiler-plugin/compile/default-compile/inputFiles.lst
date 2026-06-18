@@ -3,6 +3,7 @@ D:\作业\java课程设计\blog-server\src\main\java\com\blog\service\UserServic
 D:\作业\java课程设计\blog-server\src\main\java\com\blog\service\CategoryService.java
 D:\作业\java课程设计\blog-server\src\main\java\com\blog\entity\Tag.java
 D:\作业\java课程设计\blog-server\src\main\java\com\blog\common\Result.java
+D:\作业\java课程设计\blog-server\src\main\java\com\blog\util\BCryptGen.java
 D:\作业\java课程设计\blog-server\src\main\java\com\blog\config\WebConfig.java
 D:\作业\java课程设计\blog-server\src\main\java\com\blog\mapper\TagMapper.java
 D:\作业\java课程设计\blog-server\src\main\java\com\blog\dto\ArticleQueryDto.java

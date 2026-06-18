@@ -23,19 +23,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/**")
                 .excludePathPatterns(
                         "/api/auth/login",
-                        "/api/auth/register",
-                        "/api/articles",          // GET 公开
-                        "/api/articles/*/comments", // GET 公开
-                        "/api/categories"         // GET 公开
+                        "/api/auth/register"
                 );
 
         registry.addInterceptor(adminInterceptor)
                 .addPathPatterns(
-                        "/api/categories/**",  // POST/PUT/DELETE
-                        "/api/users"           // GET 用户列表
-                )
-                .excludePathPatterns(
-                        "/api/categories"      // GET 公开
+                        "/api/categories/**",
+                        "/api/users",
+                        "/api/users/**"
                 );
     }
 }

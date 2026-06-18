@@ -23,6 +23,17 @@ public class JwtInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        // GET 请求的公开路径无需登录
+        if ("GET".equalsIgnoreCase(request.getMethod())) {
+            String path = request.getRequestURI();
+            if (path.equals("/api/articles")
+                    || path.matches("/api/articles/\\d+")
+                    || path.matches("/api/articles/\\d+/comments")
+                    || path.equals("/api/categories")) {
+                return true;
+            }
+        }
+
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             response.setContentType("application/json;charset=UTF-8");

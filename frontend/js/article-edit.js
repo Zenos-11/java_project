@@ -166,8 +166,18 @@ function saveArticle(status) {
 
     request(method, url, data).then(function(res) {
         if (res.code === 200) {
-            showToast(status === 'published' ? '发布成功' : '草稿已保存');
-            setTimeout(function() { window.location.href = 'index.html'; }, 600);
+            if (status === 'published') {
+                showToast('发布成功');
+                setTimeout(function() { window.location.href = BASE + 'index.html'; }, 600);
+            } else {
+                showToast('草稿已保存（可在个人中心查看和继续编辑）');
+                // 新建草稿后留在页面，如果是新建则刷新获取 id 以便后续编辑
+                if (!articleId && res.data && res.data.id) {
+                    articleId = res.data.id;
+                    var newUrl = 'article-edit.html?id=' + articleId;
+                    history.replaceState(null, '', newUrl);
+                }
+            }
         } else {
             showToast(res.message, 'error');
         }

@@ -13,7 +13,6 @@ mybatis:
   type-aliases-package: com.blog.entity
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 jwt:
   secret: blog-jwt-secret-key-2024-course-design-project

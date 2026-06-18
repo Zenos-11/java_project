@@ -1,4 +1,5 @@
 // 公共工具函数
+var BASE = window.location.pathname.indexOf('/admin/') !== -1 ? '../' : '';
 var API_BASE = 'http://localhost:8080/api';
 
 // AJAX 封装
@@ -40,21 +41,21 @@ function isAdmin() {
 // 渲染导航栏
 function renderNavbar() {
     var user = currentUser();
-    var navHtml = '<div class="logo"><a href="index.html">博客管理系统</a></div>';
+    var navHtml = '<div class="logo"><a href="' + BASE + 'index.html">博客管理系统</a></div>';
     navHtml += '<div class="nav-links">';
-    navHtml += '<a href="index.html">首页</a>';
+    navHtml += '<a href="' + BASE + 'index.html">首页</a>';
 
     if (user) {
         if (user.role === 'admin') {
-            navHtml += '<a href="admin/categories.html">分类管理</a>';
-            navHtml += '<a href="admin/users.html">用户管理</a>';
+            navHtml += '<a href="' + BASE + 'admin/categories.html">分类管理</a>';
+            navHtml += '<a href="' + BASE + 'admin/users.html">用户管理</a>';
         }
-        navHtml += '<a href="article-edit.html">写文章</a>';
-        navHtml += '<a href="profile.html">个人中心</a>';
+        navHtml += '<a href="' + BASE + 'article-edit.html">写文章</a>';
+        navHtml += '<a href="' + BASE + 'profile.html">个人中心</a>';
         navHtml += '<span class="user-info">' + (user.nickname || user.username) + '</span>';
         navHtml += '<button onclick="logout()">退出</button>';
     } else {
-        navHtml += '<a href="login.html">登录</a>';
+        navHtml += '<a href="' + BASE + 'login.html">登录</a>';
     }
     navHtml += '</div>';
     $('#navbar').html(navHtml);
@@ -64,13 +65,13 @@ function renderNavbar() {
 function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = 'index.html';
+    window.location.href = BASE + 'index.html';
 }
 
 // 需要登录的页面检查
 function requireLogin() {
     if (!isLoggedIn()) {
-        window.location.href = 'login.html';
+        window.location.href = BASE + 'login.html';
         return false;
     }
     return true;
@@ -79,12 +80,12 @@ function requireLogin() {
 // 需要管理员的页面检查
 function requireAdmin() {
     if (!isLoggedIn()) {
-        window.location.href = '../login.html';
+        window.location.href = BASE + 'login.html';
         return false;
     }
     if (!isAdmin()) {
         showToast('需要管理员权限', 'error');
-        window.location.href = '../index.html';
+        window.location.href = BASE + 'index.html';
         return false;
     }
     return true;
