@@ -26,8 +26,8 @@ $(function() {
             $.each(res.data.list, function(i, a) {
                 if (a.authorId === myId) {
                     var statusBadge = a.status === 'published'
-                        ? '<span style="color:#27ae60;">[已发布]</span>'
-                        : '<span style="color:#e67e22;">[草稿]</span>';
+                        ? '<span class="status-published">[已发布]</span>'
+                        : '<span class="status-draft">[草稿]</span>';
                     var itemHtml = '<div style="padding:10px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">';
                     itemHtml += '<div><strong>' + escapeHtml(a.title) + '</strong> ' + statusBadge;
                     itemHtml += '<div style="font-size:12px; color:#999;">' + formatTime(a.createTime) + '</div></div>';

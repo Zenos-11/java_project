@@ -97,7 +97,7 @@ function loadUserList() {
                 html += '<td>' + escapeHtml(u.nickname || '-') + '</td>';
                 html += '<td>' + escapeHtml(u.email || '-') + '</td>';
                 html += '<td>' + (u.role === 'admin' ? '管理员' : '用户') + '</td>';
-                html += '<td>' + (u.status === 1 ? '<span style="color:#27ae60;">正常</span>' : '<span style="color:#e74c3c;">已禁用</span>') + '</td>';
+                html += '<td>' + (u.status === 1 ? '<span class="status-active">正常</span>' : '<span class="status-disabled">已禁用</span>') + '</td>';
                 html += '<td>' + formatTime(u.createTime) + '</td>';
                 html += '<td>';
                 if (u.role !== 'admin') {

@@ -12,7 +12,7 @@
     <div class="container">
         <div class="card">
             <div class="form-group">
-                <label>标题 <span style="color:#e74c3c;">*</span></label>
+                <label>标题 <span class="required">*</span></label>
                 <input type="text" id="title" placeholder="请输入文章标题" maxlength="200" />
                 <span class="error-msg" id="titleError"></span>
             </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>正文 <span style="color:#e74c3c;">*</span> <span style="font-weight:normal;color:#999;font-size:12px;">（支持 Markdown 语法）</span></label>
+                <label>正文 <span class="required">*</span> <span style="font-weight:normal;color:var(--text-muted);font-size:12px;">（支持 Markdown 语法）</span></label>
                 <!-- Markdown 工具栏 -->
                 <div class="md-toolbar">
                     <button type="button" title="粗体" data-md="bold"><strong>B</strong></button>
@@ -45,7 +45,7 @@
                     <button type="button" title="引用" data-md="quote">❝</button>
                     <button type="button" title="分隔线" data-md="hr">—</button>
                     <span class="md-toolbar-right">
-                        <a href="https://markdown.com.cn/basic-syntax/" target="_blank" style="font-size:12px;color:#3498db;">语法帮助</a>
+                        <a href="https://markdown.com.cn/basic-syntax/" target="_blank" style="font-size:12px;">语法帮助</a>
                     </span>
                 </div>
                 <!-- 编辑/预览 标签 -->
